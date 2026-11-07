@@ -1,0 +1,18 @@
+<idea-plugin>
+  <id>max.medvedev.ide-mcp-port-env</id>
+  <name>IDE MCP Port in Terminal</name>
+  <vendor>Max Medvedev</vendor>
+  <description><![CDATA[
+    Sets <code>IJ_MCP_SERVER_PORT</code> in each local terminal session to the port of the MCP server of this IDE.
+    A Claude Code entry with the URL <code>http://127.0.0.1:${IJ_MCP_SERVER_PORT}/stream</code> then connects to this IDE instance,
+    also when several IDE instances run.
+  ]]></description>
+
+  <depends>com.intellij.modules.platform</depends>
+  <depends>com.intellij.mcpServer</depends>
+  <depends>org.jetbrains.plugins.terminal</depends>
+
+  <extensions defaultExtensionNs="org.jetbrains.plugins.terminal">
+    <shellExecOptionsCustomizer implementation="com.max.medvedev.ide.mcp.port.McpServerPortShellExecOptionsCustomizer"/>
+  </extensions>
+</idea-plugin>
