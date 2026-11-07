@@ -6,6 +6,7 @@
     Sets <code>IJ_MCP_SERVER_PORT</code> in each local terminal session to the port of the MCP server of this IDE.
     A Claude Code entry with the URL <code>http://127.0.0.1:${IJ_MCP_SERVER_PORT}/stream</code> then connects to this IDE instance,
     also when several IDE instances run.
+    <p>The action <b>Tools | Add IDE MCP Server to Claude Code Local Config</b> writes this entry to the local scope of the project.</p>
   ]]></description>
 
   <depends>com.intellij.modules.platform</depends>
@@ -15,4 +16,17 @@
   <extensions defaultExtensionNs="org.jetbrains.plugins.terminal">
     <shellExecOptionsCustomizer implementation="com.max.medvedev.ide.mcp.port.McpServerPortShellExecOptionsCustomizer"/>
   </extensions>
+
+  <extensions defaultExtensionNs="com.intellij">
+    <notificationGroup id="IDE MCP Port" displayType="BALLOON"/>
+  </extensions>
+
+  <actions>
+    <action id="max.medvedev.ide.mcp.port.AddIdeServerToClaudeCodeLocalConfig"
+            class="com.max.medvedev.ide.mcp.port.AddIdeServerToClaudeCodeLocalConfigAction"
+            text="Add IDE MCP Server to Claude Code Local Config"
+            description="Adds the 'idea' MCP server with the URL http://127.0.0.1:${IJ_MCP_SERVER_PORT}/stream to the local scope of the project in ~/.claude.json">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+    </action>
+  </actions>
 </idea-plugin>

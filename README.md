@@ -16,6 +16,10 @@ The URL has no default port. Thus a missing variable shows "Failed to connect" i
 
 The value is the port at the start of the session. A later restart of the MCP server does not change it.
 
+**Tools | Add IDE MCP Server to Claude Code Local Config** writes this `idea` entry to the local scope of the project:
+`projects.<project path>.mcpServers` in `~/.claude.json`, the same place as `claude mcp add --scope local`.
+It replaces an existing `idea` entry there and keeps the rest of the file.
+
 ## Build
 
 - `./gradlew buildPlugin` writes the plugin ZIP to `build/distributions/`.
